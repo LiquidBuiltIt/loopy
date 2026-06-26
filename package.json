@@ -1,0 +1,33 @@
+{
+  "name": "looopy",
+  "version": "0.1.0",
+  "description": "Dispatch workflows as fire-and-forget background Claude runs",
+  "type": "module",
+  "bin": {
+    "looopy": "dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "dev": "tsx src/cli.ts",
+    "version.bump": "npx tsx scripts/version.bump.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "commander": "^12.1.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "tsx": "^4.16.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  }
+}
