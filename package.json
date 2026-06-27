@@ -2,6 +2,23 @@
   "name": "looopy",
   "version": "0.1.0",
   "description": "Dispatch workflows as fire-and-forget background Claude runs",
+  "keywords": [
+    "claude",
+    "claude-code",
+    "cli",
+    "workflow",
+    "automation",
+    "background-jobs",
+    "agents"
+  ],
+  "homepage": "https://github.com/LiquidBuiltIt/looopy#readme",
+  "bugs": "https://github.com/LiquidBuiltIt/looopy/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LiquidBuiltIt/looopy.git"
+  },
+  "license": "MIT",
+  "author": "LiquidBuiltIt",
   "type": "module",
   "bin": {
     "looopy": "dist/cli.js"
@@ -16,7 +33,8 @@
     "build": "tsc",
     "test": "vitest run",
     "test:watch": "vitest",
-    "dev": "tsx src/cli.ts"
+    "dev": "tsx src/cli.ts",
+    "prepublishOnly": "npm run build && npm test"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",

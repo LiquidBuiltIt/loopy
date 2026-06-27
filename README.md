@@ -22,10 +22,14 @@ Enforcement is *injected*, never written into your workflow directory — your w
 
 ## Install
 
-> Published to npm as `looopy` soon. For now, install from source.
+```bash
+npm install -g looopy
+```
+
+That puts `looopy` on your PATH. Or install from source:
 
 ```bash
-git clone <repo-url> looopy
+git clone https://github.com/LiquidBuiltIt/looopy.git
 cd looopy
 npm install
 npm run build
