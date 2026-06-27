@@ -13,6 +13,8 @@ import { initHome, newWorkflow } from "./scaffold.js";
 import { readRuns, formatRuns } from "./ledger.js";
 import { validateWorkflow } from "./validate.js";
 import { onboard } from "./onboard.js";
+import { pollRuns } from "./poll.js";
+import { BANNER } from "./banner.js";
 
 export function reportOne(root: string, workflow: string, limit: number): string {
   const dir = path.join(root, workflow);
@@ -90,6 +92,8 @@ export function buildProgram(): Command {
     .description("Dispatch workflows as fire-and-forget background Claude runs")
     .version(readVersion())
     .enablePositionalOptions();
+
+  program.addHelpText("beforeAll", BANNER);
 
   program
     .command("init")
@@ -203,6 +207,28 @@ export function buildProgram(): Command {
     });
 
   program
+    .command("poll <id>")
+    .description(
+      "Block until a run reaches its verdict; exit code = outcome (0 success, 1 failure, 2 timeout, 3 unknown)",
+    )
+    .option("--interval <sec>", "poll interval in seconds", "2")
+    .option("--timeout <sec>", "max seconds to wait (default: no limit)")
+    .action(async (id: string, opts: { interval: string; timeout?: string }) => {
+      const root = resolveRoot();
+      const intervalMs = (parseFloat(opts.interval) || 2) * 1000;
+      const timeoutMs = opts.timeout ? (parseFloat(opts.timeout) || 0) * 1000 : undefined;
+      const sleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
+      const { code, line } = await pollRuns(root, id, {
+        intervalMs,
+        timeoutMs,
+        sleep,
+        now: () => Date.now(),
+      });
+      (code === 0 ? process.stdout : process.stderr).write(line + "\n");
+      process.exit(code);
+    });
+
+  program
     .command("report [workflow]")
     .description("Review recorded run outcomes")
     .option("-n, --limit <n>", "max runs to show for a single workflow", "10")
@@ -291,5 +317,11 @@ function invokedDirectly(): boolean {
   }
 }
 if (invokedDirectly()) {
-  buildProgram().parseAsync(process.argv);
+  const program = buildProgram();
+  // Bare invocation (no subcommand) → show the banner + help, not an error.
+  if (process.argv.length <= 2) {
+    program.outputHelp();
+    process.exit(0);
+  }
+  program.parseAsync(process.argv);
 }

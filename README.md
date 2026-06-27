@@ -1,5 +1,39 @@
 # looopy
 
+```
+                bröther may i                 
+
+              +*=
+              o+:==o#%%%%%*+=++#:
+:             :o: +%@%%@@%o+:  *o
++:            *o===#+ +@#+:   +#*o=
+=            o#**o     +==+oo++++=o#
+           :%oo++*+   :##*:o**o++++%
+         :++:      :   :  :++++++==%+
+       =+:         o#+    :::: :=  o@%+
+     =#@+         =::+=  :=:       #@@@%o
+    o@%%%                         o@@%%@@%*
+   :@@%%%:                       =%@%%%%%@@#o
+   #oo#@%:                       o@@%%%%%@%=+*
+   #   :                         =%@@%%%@@# :*
+  *+    =+                        :#@@@@@@#::*
+ =o   =*+                          :+#@@@@*::*
+ *+   %+                             :o**= ::*
+ +o  :%=                    ::       :+:   :=o
+ +o   %=:::                 o+      :oo   :=+*
+  o++#o=:==:               +*     :+o:   ::+#
+     *o:===::              +*     #=  : :==+#
+      **======= ::   ::    =#     %=:::::=:=#
+       :o*============::=::=*o   *o::======+#
+         o*o+==============:+*+++*=======++#=
+          **#*o+==::========:====:===+o**o=
+             : =ooooooooooooooooo+=*#o:
+                              :**+==+*
+                                :oo++#
+
+               have some lööps                
+```
+
 **An opinionated runtime that makes autonomous [Claude Code](https://docs.anthropic.com/en/docs/claude-code) workflows accountable.**
 
 Fire-and-forget background agents are easy to launch and hard to trust. You kick one off, close the laptop, and hours later you have… what? A process that may have finished, half-finished, or quietly done the wrong thing — with no record either way.
